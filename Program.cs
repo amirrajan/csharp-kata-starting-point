@@ -5,9 +5,21 @@ using System.Linq;
 using System.Collections.Generic;
 using static Sugar;
 
+struct PersonStruct
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+}
+
+class PersonClass
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+}
+
 class Program
 {
-    static void Main(string[] args)
+    static void Main1(string[] args)
     {
         if ("1111".ToInt() is int parsed)
         {
@@ -21,6 +33,18 @@ class Program
         maybeNumbers.Select(s => s.ToInt())
                     .Compact()
                     .ForEach(f => Console.WriteLine(f));
+    }
+
+
+    static void Main(string[] args)
+    {
+        PersonStruct person_struct = new PersonStruct { Name = "Alice", Age = 30 };
+        Console.WriteLine($"Struct - Name: {person_struct.Name}, Age: {person_struct.Age}");
+
+        PersonClass person_class = new PersonClass { Name = "Bob", Age = 25 };
+        Console.WriteLine($"Class - Name: {person_class.Name}, Age: {person_class.Age}");
+
+        Console.WriteLine(person_struct == person_class);
     }
 }
 
